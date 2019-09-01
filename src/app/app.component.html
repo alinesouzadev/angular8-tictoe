@@ -1,0 +1,20 @@
+<mat-toolbar color="primary">
+    <h1>Tic Toe</h1>
+</mat-toolbar>
+<div class="content">
+    <h3 *ngIf="!gameOver">Jogador: {{ currentPlayer.name }}</h3>
+    <h3 *ngIf="gameOver && lastWinner == player1">Você venceu!</h3>
+    <h3 *ngIf="gameOver && lastWinner == player2">Você perdeu</h3>
+    <h3 *ngIf="gameOver && lastWinner == DRAW">Empate!</h3>
+    <br />
+
+    <div id="board" [class.locked]="boardLocked || gameOver">
+        <div *ngFor="let square of board" class="square" [class.checked]="square.value != ''" [class.winner]="square.winner" (click)="square_click(this.square)">
+            {{ square.value }}
+        </div>
+    </div>
+    <br />
+    <button mat-raised-button color="primary" class="btn" value="Play again" *ngIf="gameOver" (click)="newGame()">
+    Jogar novamente
+  </button>
+</div>
